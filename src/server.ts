@@ -1,25 +1,23 @@
 import fastify from 'fastify'
-// import crypto from 'node:crypto'
-import { knex } from './database'
 import { env } from './env'
+import { transactionRoutes } from './routes/transactions'
+import cookie from '@fastify/cookie'
 
 const app = fastify()
 
+app.register(cookie)
+
+// midleware global
+app.addHook('preHandler', async (request) => {
+  console.log(`[${request.method}] ${request.url}`)
+})
+
+app.register(transactionRoutes, {
+  prefix: 'transactions',
+})
+
 app.get('/hello', async () => {
-  const transactions = await knex('transactions')
-    .where('amount', 1500)
-    .select('*')
-  return transactions
-
-  // const transaction = await knex('transactions')
-  //   .insert({
-  //     id: crypto.randomUUID(),
-  //     title: 'Transação de teste 23',
-  //     amount: 1000,
-  //   })
-  //   .returning('*')
-
-  // return transaction
+  return 'Hello World'
 })
 
 app
