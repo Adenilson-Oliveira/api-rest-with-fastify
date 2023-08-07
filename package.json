@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "test": "vitest",
     "dev": "tsx watch src/server.ts",
     "knex_": "node --no-warnings --loader tsx ./node_modules/.bin/knex",
     "knex": "node --no-warnings --loader tsx ./node_modules/knex/bin/cli.js",
@@ -17,7 +18,8 @@
     "@types/node": "^20.4.4",
     "eslint": "^8.45.0",
     "tsx": "^3.12.7",
-    "typescript": "^5.1.6"
+    "typescript": "^5.1.6",
+    "vitest": "^0.34.1"
   },
   "dependencies": {
     "@fastify/cookie": "^9.0.4",
